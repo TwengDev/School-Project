@@ -16,11 +16,13 @@ public class Order_System extends JFrame implements ActionListener
 
     public Order_System(JFrame frame)
     {
-        super("Lab Exercise 4");
+        super("Food Ordering System");
     	
 		main_panel = new JPanel(new BorderLayout());
+
 		north_panel = new JPanel();
         north_panel.setBackground(Color.DARK_GRAY);
+        
 		title = new JLabel("SCHOOL COMBO MEALS MENU", JLabel.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 22));  
         title.setForeground(Color.WHITE);

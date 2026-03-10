@@ -7,59 +7,94 @@ public class Font_Formatter extends JFrame implements ActionListener
 	JButton Clear, Exit;
 	JLabel text;
 	JTextField TextField;
+	JPanel panel1;
 
     public Font_Formatter(JFrame frame)  
     {
-        super ("Lab Exercise 2");
+        super ("Basic Font Formatter");
 		setLayout(null);		
 		
 		text = new JLabel("Enter a word below:");
-		text.setBounds(20, 20, 250, 20);
+		text.setForeground(Color.WHITE);
+		text.setBounds(20, 5, 250, 20);
 		text.setFont(new Font("Arial", Font.PLAIN, 18));
-		text.setForeground(Color.black);
-		this.add(text);
+		add(text);
 
-		TextField = new JTextField();
-		TextField.setBounds(20, 40, 245, 25);
-		TextField.setFont(new Font("Arial", Font.PLAIN, 18));
-		this.add(TextField);
+		TextField = new JTextField();	
+		TextField.setBounds(20, 27, 245, 30);
+		TextField.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		add(TextField);
+		TextField.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent ae)
+			{
+				if(TextField.getText().equals(""))
+				{
+					JOptionPane.showMessageDialog(null, "Enter any word","Error",JOptionPane.ERROR_MESSAGE);
+					TextField.requestFocusInWindow();
+				}
+				else
+				{
+					BOLD.setEnabled(true);
+					ITALIC.setEnabled(true);
+					BOLD_ITALIC.setEnabled(true);
+					text.requestFocusInWindow();
+				}
+			}
+		});
 
 		BOLD = new JButton("Bold");
-		BOLD.setBounds(20, 70, 75, 38);
-		BOLD.setFont(new Font("Arial", Font.BOLD, 16));	
+		BOLD.setBackground(new Color(88,162,174));
+		BOLD.setForeground(Color.white);
+		BOLD.setBounds(20, 57, 75, 60);
+		BOLD.setFont(new Font("Arial", Font.BOLD, 12));
+		BOLD.setEnabled(false);
 		BOLD.addActionListener(this);
 		this.add(BOLD);
 		
 		ITALIC= new JButton("Italic");
-		ITALIC.setBounds(105, 70, 75, 38);
-		ITALIC.setFont(new Font("Arial", Font.ITALIC, 16));		
+		ITALIC.setBackground(new Color(88,162,174));
+		ITALIC.setForeground(Color.white);
+		ITALIC.setBounds(105, 57, 75, 60);
+		ITALIC.setFont(new Font("Arial", Font.ITALIC, 12));	
+		ITALIC.setEnabled(false);	
 		ITALIC.addActionListener(this);
-			
-		this.add(ITALIC);
-		BOLD_ITALIC = new JButton("<html>Bold-<br>Italic<html>");
-		BOLD_ITALIC.setBounds(190, 70, 75, 38);
-		BOLD_ITALIC.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 16));	
+		add(ITALIC);
+
+		BOLD_ITALIC = new JButton("Bold-Italic");
+		BOLD_ITALIC.setBackground(new Color(88,162,174));
+		BOLD_ITALIC.setForeground(Color.white);
+		BOLD_ITALIC.setBounds(190, 57, 75, 60);
+		BOLD_ITALIC.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 12));
+		BOLD_ITALIC.setVerticalTextPosition(SwingConstants.TOP);
+		BOLD_ITALIC.setHorizontalTextPosition(SwingConstants.CENTER);
+		BOLD_ITALIC.setMargin(new Insets(5,5,5,5));
+		BOLD_ITALIC.setEnabled(false);
 		BOLD_ITALIC.addActionListener(this);
-		this.add(BOLD_ITALIC);	
+		add(BOLD_ITALIC);	
 		
 		Clear = new JButton("Clear");
-		Clear.setBounds(20, 113, 120, 38);
+		Clear.setBackground(Color.orange);
+		Clear.setForeground(Color.white);
+		Clear.setBounds(20, 130, 120, 38);
 		Clear.setFont(new Font("Arial", Font.PLAIN, 16));		
 		Clear.addActionListener(this);						
-		this.add(Clear);	
+		add(Clear);	
 		
 		Exit = new JButton("Exit");
-		Exit.setBounds(145, 113, 120, 38);
+		Exit.setBackground(Color.red);
+		Exit.setForeground(Color.white);
+		Exit.setBounds(145, 130, 120, 38);
 		Exit.setFont(new Font("Arial", Font.PLAIN, 16));	
 		Exit.addActionListener(this);
-		this.add(Exit);		
-
+		add(Exit);		
+		
 		pack();
-		setSize(300, 200);
+		setSize(290, 210);
 		setLocationRelativeTo(null);
 		setResizable(false);
-
-		this.setVisible(true);
+		getContentPane().setBackground(new Color(43,77,107));
+		setVisible(true);
     }
 	public void actionPerformed(ActionEvent ae)
 	{
@@ -82,6 +117,9 @@ public class Font_Formatter extends JFrame implements ActionListener
 		{
 			TextField.setText("");
 			TextField.setFont(new Font("Arial", Font.PLAIN,18));
+			BOLD.setEnabled(false);
+			ITALIC.setEnabled(false);
+			BOLD_ITALIC.setEnabled(false);
 			TextField.requestFocusInWindow();
 		}
 		else if (ae.getSource()== Exit)
