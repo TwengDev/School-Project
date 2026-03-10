@@ -18,21 +18,27 @@ public class Greet_App extends JFrame implements ActionListener
 		con.setLayout(null);
 		lbl1 = new JLabel("<------------GREET APP------------>");
 		lbl1.setBounds(50,10,300,20);
+		con.add(lbl1);
 		
 		lbl2 = new JLabel("Hi! I am  AEDI");
 		lbl2.setBounds(10,40,300,15);
+		con.add(lbl2);
 		
 		lbl3 = new JLabel("I want to be your friends with you.");
 		lbl3.setBounds(10,60,300,15);
+		con.add(lbl3);
 		
 		lbl4 = new JLabel("Can i know your name?");						
 		lbl4.setBounds(10,80,300,15);
+		con.add(lbl4);
 		
 		lbl5 = new JLabel("Your Name: ");
 		lbl5.setBounds(10,105,80,15);
+		con.add(lbl5);
 		
 		txt1 = new JTextField();
 		txt1.setBounds(90, 105, 120, 18);
+		con.add(txt1);
 		txt1.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent ae)
@@ -52,32 +58,26 @@ public class Greet_App extends JFrame implements ActionListener
 		
 		lbl6 = new JLabel();
 		lbl6.setBounds(10,125,320,15);
-		
+		con.add(lbl6);
 		btn1 = new JButton("Greet Me");
 		btn1.setBounds(10,145,88,25);
 		btn1.setEnabled(false);
+		con.add(btn1);
 		btn1.addActionListener(this);
 		
 		btn2 = new JButton("Clear");
 		btn2.setBounds(101,145,88,25);
+		con.add(btn2);
 		btn2.addActionListener(this);
 		
 		btn3 = new JButton("Exit");
 		btn3.setBounds(192,145,88,25);
+		con.add(btn3);
 		btn3.addActionListener(this);
 		
 		
 		
-		con.add(btn3);
-		con.add(btn2);
-		con.add(btn1);
-		con.add(lbl6);
-		con.add(txt1);
-		con.add(lbl1);
-		con.add(lbl2);
-		con.add(lbl3);
-		con.add(lbl4);
-		con.add(lbl5);
+		
 		pack();
 		setSize(305,230);
 		setResizable(false);

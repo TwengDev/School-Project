@@ -1,78 +1,93 @@
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
-
-public class Font_Formatter extends JFrame
+public class Font_Formatter extends JFrame implements ActionListener
 {
+	JButton BOLD, ITALIC, BOLD_ITALIC;
+	JButton Clear, Exit;
+	JLabel text;
+	JTextField TextField;
 
-    public Font_Formatter()  
+    public Font_Formatter(JFrame frame)  
     {
-        JFrame frame = new JFrame("Lab Exercise 2");
-		frame.setSize(300, 200);
-		frame.setLocationRelativeTo(null);
-		frame.setLayout(null);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        super ("Lab Exercise 2");
+		setLayout(null);		
 		
-		
-		JLabel text = new JLabel("<html>Hi! Please enter a word below: </html>");
+		text = new JLabel("Enter a word below:");
 		text.setBounds(20, 20, 250, 20);
 		text.setFont(new Font("Arial", Font.PLAIN, 18));
 		text.setForeground(Color.black);
-		frame.add(text);
+		this.add(text);
 
-		JTextField TextField = new JTextField();
+		TextField = new JTextField();
 		TextField.setBounds(20, 40, 245, 25);
 		TextField.setFont(new Font("Arial", Font.PLAIN, 18));
-		frame.add(TextField);
+		this.add(TextField);
 
-		JButton BOLD = new JButton("Bold");
+		BOLD = new JButton("Bold");
 		BOLD.setBounds(20, 70, 75, 38);
-		BOLD.setFont(new Font("Arial", Font.BOLD, 16));
+		BOLD.setFont(new Font("Arial", Font.BOLD, 16));	
+		BOLD.addActionListener(this);
+		this.add(BOLD);
 		
-		BOLD.addActionListener(e -> {
-		//String name = TextField.getText();
-		TextField.setFont(new Font("Arial", Font.BOLD,18));
-		});
-		frame.add(BOLD);
-		
-		JButton ITALIC= new JButton("Italic");
+		ITALIC= new JButton("Italic");
 		ITALIC.setBounds(105, 70, 75, 38);
-		ITALIC.setFont(new Font("Arial", Font.ITALIC, 16));
-		
-		ITALIC.addActionListener(e -> 
-		{
-		//String name = lab_TextField.getText();
-		TextField.setFont(new Font("Arial", Font.ITALIC,18));
-		});		
-		frame.add(ITALIC);
-		JButton BOLD_ITALIC = new JButton("<html>Bold-<br>Italic<html>");
+		ITALIC.setFont(new Font("Arial", Font.ITALIC, 16));		
+		ITALIC.addActionListener(this);
+			
+		this.add(ITALIC);
+		BOLD_ITALIC = new JButton("<html>Bold-<br>Italic<html>");
 		BOLD_ITALIC.setBounds(190, 70, 75, 38);
-		BOLD_ITALIC.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 16));
+		BOLD_ITALIC.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 16));	
+		BOLD_ITALIC.addActionListener(this);
+		this.add(BOLD_ITALIC);	
 		
-		BOLD_ITALIC.addActionListener(e -> 
-		{
-		//String name = lab_TextField.getText();
-		TextField.setFont(new Font("Arial", Font.BOLD | Font.ITALIC,18));
-		});
-		frame.add(BOLD_ITALIC);	
+		Clear = new JButton("Clear");
+		Clear.setBounds(20, 113, 120, 38);
+		Clear.setFont(new Font("Arial", Font.PLAIN, 16));		
+		Clear.addActionListener(this);						
+		this.add(Clear);	
 		
-		JButton Clear= new JButton("Clear");
-		Clear.setBounds(60, 113, 75, 38);
-		Clear.setFont(new Font("Arial", Font.PLAIN, 16));
-		
-		Clear.addActionListener(e -> 
-		{
-		TextField.setText("");
-		TextField.setFont(new Font("Arial", Font.PLAIN,18));
-		});				
-		frame.add(Clear);	
-		
-		JButton Exit = new JButton("Exit");
-		Exit.setBounds(155, 113, 75, 38);
-		Exit.setFont(new Font("Arial", Font.PLAIN, 16));
-		
-		Exit.addActionListener(e -> frame.dispose());
-		frame.add(Exit);		
-		frame.setVisible(true);
+		Exit = new JButton("Exit");
+		Exit.setBounds(145, 113, 120, 38);
+		Exit.setFont(new Font("Arial", Font.PLAIN, 16));	
+		Exit.addActionListener(this);
+		this.add(Exit);		
+
+		pack();
+		setSize(300, 200);
+		setLocationRelativeTo(null);
+		setResizable(false);
+
+		this.setVisible(true);
     }
+	public void actionPerformed(ActionEvent ae)
+	{
+		if (ae.getSource()== BOLD)
+		{
+			TextField.setFont(new Font("Arial", Font.BOLD,18));
+			TextField.requestFocusInWindow();
+		}
+		else if (ae.getSource()== ITALIC)
+		{
+			TextField.setFont(new Font("Arial", Font.ITALIC,18));
+			TextField.requestFocusInWindow();
+		}
+		else if (ae.getSource()== BOLD_ITALIC)
+		{
+			TextField.setFont(new Font("Arial", Font.BOLD | Font.ITALIC,18));
+			TextField.requestFocusInWindow();
+		}
+		else if (ae.getSource()== Clear)
+		{
+			TextField.setText("");
+			TextField.setFont(new Font("Arial", Font.PLAIN,18));
+			TextField.requestFocusInWindow();
+		}
+		else if (ae.getSource()== Exit)
+		{
+			this.dispose();
+		}
+	}
     
 }

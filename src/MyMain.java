@@ -131,15 +131,15 @@ public class MyMain extends JFrame implements ActionListener
 		}
 		if (ae.getSource()== menu_item2_2)
 		{	
-			f_app = new Font_Formatter();
+			f_app = new Font_Formatter(this);
 		}
 		if (ae.getSource()== menu_item2_3)
 		{	
-			u_app = new Unit_Converter();
+			u_app = new Unit_Converter(this);
 		}
 		if (ae.getSource()== menu_item2_4)
 		{	
-			o_app = new Order_System();
+			o_app = new Order_System(this);
 		}
 
 	}
