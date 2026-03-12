@@ -76,13 +76,10 @@ public class Greet_App extends JFrame implements ActionListener
 		con.add(btn3);
 		btn3.addActionListener(this);
 								
-		pack();
 		setSize(300,230);
 		setResizable(false);
-		setLocationRelativeTo(null);
-		
-		setVisible(true);
-		
+		setLocationRelativeTo(null);		
+		setVisible(true);		
 	}
 	public void actionPerformed(ActionEvent ae)
 	{
@@ -90,7 +87,7 @@ public class Greet_App extends JFrame implements ActionListener
 		{
 			String name = txt1.getText();
 			lbl6.setText("I am honored to be you friend, "+name);
-			
+			txt1.requestFocusInWindow();		
 		}
 		else if(ae.getSource()== btn2)
 		{
@@ -108,12 +105,9 @@ public class Greet_App extends JFrame implements ActionListener
 		{			
 			String name;
 			name = txt1.getText();
-			btn1.setEnabled(true);
 			lbl6.setText("I am honored to be your friend, "+name);
 			txt1.setText("");
 			btn1.setEnabled(false);
-		}
-		
-	}
-	
+		}		
+	}	
 }

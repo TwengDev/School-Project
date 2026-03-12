@@ -21,111 +21,81 @@ public class Font_Formatter extends JFrame implements ActionListener
 		add(text);
 
 		TextField = new JTextField();	
-		TextField.setBounds(20, 27, 245, 30);
-		TextField.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		TextField.setBounds(20, 27, 265, 25);
+		TextField.setFont(new Font("Arial", Font.PLAIN, 18));
 		add(TextField);
-		TextField.addActionListener(new ActionListener()
+		TextField.addKeyListener(new KeyAdapter()
 		{
-			public void actionPerformed(ActionEvent ae)
+			public void keyReleased(KeyEvent ke)
 			{
-				if(TextField.getText().equals(""))
+				if(TextField.getText().trim().equals(""))
 				{
-					JOptionPane.showMessageDialog(null, "Enter any word","Error",JOptionPane.ERROR_MESSAGE);
-					TextField.requestFocusInWindow();
+					BOLD.setEnabled(false);
+					ITALIC.setEnabled(false);
+					BOLD_ITALIC.setEnabled(false);
 				}
 				else
 				{
 					BOLD.setEnabled(true);
 					ITALIC.setEnabled(true);
-					BOLD_ITALIC.setEnabled(true);
-					text.requestFocusInWindow();
+					BOLD_ITALIC.setEnabled(true);		
+					TextField.requestFocusInWindow();			
 				}
 			}
 		});
+		BOLD = setStylesAEEAdd("<html><b>Bold</b></html>", 20, 57, 85, 60);		
+		ITALIC= setStylesAEEAdd("<html><i>Italic</i></html>", 110, 57, 85, 60);
+		BOLD_ITALIC = setStylesAEEAdd("<html><b><i>Bold-Italic</i></b></html>", 200, 57, 85, 60);		
+		Clear = setStylesAEAdd("Clear", Color.orange, 20, 130, 130, 38);		
+		Exit = setStylesAEAdd("Exit", Color.red, 155, 130, 130, 38);
 
-		BOLD = new JButton("Bold");
-		BOLD.setBackground(new Color(88,162,174));
-		BOLD.setForeground(Color.white);
-		BOLD.setBounds(20, 57, 75, 60);
-		BOLD.setFont(new Font("Arial", Font.BOLD, 12));
-		BOLD.setEnabled(false);
-		BOLD.addActionListener(this);
-		this.add(BOLD);
-		
-		ITALIC= new JButton("Italic");
-		ITALIC.setBackground(new Color(88,162,174));
-		ITALIC.setForeground(Color.white);
-		ITALIC.setBounds(105, 57, 75, 60);
-		ITALIC.setFont(new Font("Arial", Font.ITALIC, 12));	
-		ITALIC.setEnabled(false);	
-		ITALIC.addActionListener(this);
-		add(ITALIC);
-
-		BOLD_ITALIC = new JButton("Bold-Italic");
-		BOLD_ITALIC.setBackground(new Color(88,162,174));
-		BOLD_ITALIC.setForeground(Color.white);
-		BOLD_ITALIC.setBounds(190, 57, 75, 60);
-		BOLD_ITALIC.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 12));
-		BOLD_ITALIC.setVerticalTextPosition(SwingConstants.TOP);
-		BOLD_ITALIC.setHorizontalTextPosition(SwingConstants.CENTER);
-		BOLD_ITALIC.setMargin(new Insets(5,5,5,5));
-		BOLD_ITALIC.setEnabled(false);
-		BOLD_ITALIC.addActionListener(this);
-		add(BOLD_ITALIC);	
-		
-		Clear = new JButton("Clear");
-		Clear.setBackground(Color.orange);
-		Clear.setForeground(Color.white);
-		Clear.setBounds(20, 130, 120, 38);
-		Clear.setFont(new Font("Arial", Font.PLAIN, 16));		
-		Clear.addActionListener(this);						
-		add(Clear);	
-		
-		Exit = new JButton("Exit");
-		Exit.setBackground(Color.red);
-		Exit.setForeground(Color.white);
-		Exit.setBounds(145, 130, 120, 38);
-		Exit.setFont(new Font("Arial", Font.PLAIN, 16));	
-		Exit.addActionListener(this);
-		add(Exit);		
-		
-		pack();
-		setSize(290, 210);
+		setSize(310, 210);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		getContentPane().setBackground(new Color(43,77,107));
 		setVisible(true);
     }
+	private JButton setStylesAEEAdd(String name, int x, int y, int width, int height)
+	{
+		JButton template = new JButton(name);
+		template.setBackground(new Color(88,162,174));
+		template.setForeground(Color.white);
+		template.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 13));
+		template.setBounds(x, y, width, height);
+		template.addActionListener(this);
+		template.setEnabled(false);
+		add(template);
+		return template;
+	}
+	private JButton setStylesAEAdd(String name, Color bg, int x, int y, int width, int height)
+	{
+		JButton template = new JButton(name);
+		template.setBackground(bg);
+		template.setForeground(new Color(80, 70, 50));
+		template.setFont(new Font("Arial", Font.PLAIN, 16));
+		template.setBounds(x, y, width, height);
+		template.addActionListener(this);
+		add(template);
+		return template;
+	}
 	public void actionPerformed(ActionEvent ae)
 	{
-		if (ae.getSource()== BOLD)
-		{
-			TextField.setFont(new Font("Arial", Font.BOLD,18));
-			TextField.requestFocusInWindow();
+		if (ae.getSource()== BOLD) setFont(Font.BOLD);
+		else if (ae.getSource()== ITALIC) setFont(Font.ITALIC);
+		else if (ae.getSource()== BOLD_ITALIC) setFont(Font.BOLD | Font.ITALIC);
+		else if (ae.getSource()== Clear) 
+		{  
+			TextField.setText("");  
+			setFont(Font.PLAIN);  
+			BOLD.setEnabled(false);  
+			ITALIC.setEnabled(false);  
+			BOLD_ITALIC.setEnabled(false); 
 		}
-		else if (ae.getSource()== ITALIC)
-		{
-			TextField.setFont(new Font("Arial", Font.ITALIC,18));
-			TextField.requestFocusInWindow();
-		}
-		else if (ae.getSource()== BOLD_ITALIC)
-		{
-			TextField.setFont(new Font("Arial", Font.BOLD | Font.ITALIC,18));
-			TextField.requestFocusInWindow();
-		}
-		else if (ae.getSource()== Clear)
-		{
-			TextField.setText("");
-			TextField.setFont(new Font("Arial", Font.PLAIN,18));
-			BOLD.setEnabled(false);
-			ITALIC.setEnabled(false);
-			BOLD_ITALIC.setEnabled(false);
-			TextField.requestFocusInWindow();
-		}
-		else if (ae.getSource()== Exit)
-		{
-			this.dispose();
-		}
+		else if (ae.getSource()== Exit) dispose();
 	}
-    
+	private void setFont(int font)
+	{
+		TextField.setFont(new Font("Arial", font, 18));
+		TextField.requestFocusInWindow();
+	} 
 }

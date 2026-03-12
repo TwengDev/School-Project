@@ -52,22 +52,18 @@ public class MyMain extends JFrame implements ActionListener
 		
 		
 		menu2 = new JMenu("Exercises");
-		menu_item2_1 = new JMenuItem("Lab Exercises 1");
+		menu_item2_1 = new JMenuItem("Lab Exercise 1");
 		menu2.add(menu_item2_1);
 		menu_item2_1.addActionListener(this);		
-	
 		
 		menu_item2_2 = new JMenuItem("Lab Exercise 2");
 		menu2.add(menu_item2_2);
-		menu_item2_2.addActionListener(this);	
-		
-		
+		menu_item2_2.addActionListener(this);			
 		
 		menu_item2_3 = new JMenuItem("Lab Exercise 3");
 		menu2.add(menu_item2_3);
 		menu_item2_3.addActionListener(this);	
-		
-		
+			
 		menu_item2_4 = new JMenuItem("Lab Exercise 4");
 		menu2.add(menu_item2_4);
 		menu_item2_4.addActionListener(this);	
@@ -103,50 +99,29 @@ public class MyMain extends JFrame implements ActionListener
 		toolbar.add(btn_exit);
 		btn_exit.setToolTipText("Quit Application");
 		btn_exit.addActionListener(this);
-		
-		
+				
 		add(toolbar,BorderLayout.NORTH);
 		setSize(1920,50);
 		pack();
 		setSize(1920,1080);
 		setResizable(false);
 		setLocationRelativeTo(null);
-		setVisible (true);
-		
-		
+		setVisible (true);				
 	}
 	public void actionPerformed(ActionEvent ae)
 	{
-		if (ae.getSource()== menu_item1 ||ae.getSource()==btn_exit)
-		{
-			System.exit(0);
-		}
-		if (ae.getSource()== menu_item4)
+		if (ae.getSource()== menu_item1 ||ae.getSource()==btn_exit)  System.exit(0);
+		else if (ae.getSource()== menu_item4)
 		{
 			JOptionPane.showMessageDialog(null, "Programmed by: Jake", "Developer", JOptionPane.INFORMATION_MESSAGE);
 		}
-		if (ae.getSource()== menu_item2_1)
-		{	
-			g_app = new Greet_App(this);
-		}
-		if (ae.getSource()== menu_item2_2)
-		{	
-			f_app = new Font_Formatter(this);
-		}
-		if (ae.getSource()== menu_item2_3)
-		{	
-			u_app = new Unit_Converter(this);
-		}
-		if (ae.getSource()== menu_item2_4)
-		{	
-			o_app = new Order_System(this);
-		}
-
+		else if (ae.getSource()== menu_item2_1)  g_app = new Greet_App(this);
+		else if (ae.getSource()== menu_item2_2)  f_app = new Font_Formatter(this);
+		else if (ae.getSource()== menu_item2_3)  u_app = new Unit_Converter(this);
+		else if (ae.getSource()== menu_item2_4)  o_app = new Order_System(this);
 	}
-	
-	public static void main(String[] args)
+	public static void main(String[] args) 
 	{
 		new MyMain();
 	}
-
 }
