@@ -54,8 +54,7 @@ public class Greet_App extends JFrame implements ActionListener
 					btn1.requestFocusInWindow();
 				}
 			}
-		});
-		
+		});	
 		lbl6 = new JLabel();
 		lbl6.setBounds(10,130,320,15);
 		con.add(lbl6);
@@ -87,6 +86,7 @@ public class Greet_App extends JFrame implements ActionListener
 		{
 			String name = txt1.getText();
 			lbl6.setText("I am honored to be you friend, "+name);
+			btn1.setEnabled(false);
 			txt1.requestFocusInWindow();		
 		}
 		else if(ae.getSource()== btn2)
@@ -94,20 +94,11 @@ public class Greet_App extends JFrame implements ActionListener
 			txt1.setText("");
 			lbl6.setText("");
 			btn1.setEnabled(false);
-			txt1.requestFocusInWindow();
-			
+			txt1.requestFocusInWindow();	
 		}
 		else if(ae.getSource()==btn3)
 		{
 			this.dispose();
-		}
-		if(ae.getSource()== btn1)
-		{			
-			String name;
-			name = txt1.getText();
-			lbl6.setText("I am honored to be your friend, "+name);
-			txt1.setText("");
-			btn1.setEnabled(false);
-		}		
+		}	
 	}	
 }

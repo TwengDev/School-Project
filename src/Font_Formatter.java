@@ -43,11 +43,11 @@ public class Font_Formatter extends JFrame implements ActionListener
 				}
 			}
 		});
-		BOLD = setStylesAEEAdd("<html><b>Bold</b></html>", 20, 57, 85, 60);		
-		ITALIC= setStylesAEEAdd("<html><i>Italic</i></html>", 110, 57, 85, 60);
-		BOLD_ITALIC = setStylesAEEAdd("<html><b><i>Bold-Italic</i></b></html>", 200, 57, 85, 60);		
-		Clear = setStylesAEAdd("Clear", Color.orange, 20, 130, 130, 38);		
-		Exit = setStylesAEAdd("Exit", Color.red, 155, 130, 130, 38);
+		BOLD = setButtonsStats("<html><b>BOLD</b></html>",new Color(88,162,174), Color.white, new Font("Arial", Font.BOLD, 13), 20, 57, 85, 60, false);
+		ITALIC = setButtonsStats("<html><i>ITALIC</i></html>", new Color(88,162,174), Color.white, new Font("Arial", Font.ITALIC, 13), 110, 57, 85, 60, false);
+		BOLD_ITALIC = setButtonsStats("<html><b><i>BOLD-ITALIC</i></b></html>", new Color(88,162,174), Color.white, new Font("Arial", Font.BOLD | Font.ITALIC, 13), 200, 57, 85, 60, false);
+		Clear = setButtonsStats("Clear", Color.orange, new Color(80, 70, 50), new Font("Arial", Font.PLAIN, 18), 20, 130, 130, 38, true);
+		Exit = setButtonsStats("Exit", Color.red, new Color(80, 70, 50), new Font("Arial", Font.PLAIN, 18), 155, 130, 130, 38, true);
 
 		setSize(310, 210);
 		setLocationRelativeTo(null);
@@ -55,26 +55,15 @@ public class Font_Formatter extends JFrame implements ActionListener
 		getContentPane().setBackground(new Color(43,77,107));
 		setVisible(true);
     }
-	private JButton setStylesAEEAdd(String name, int x, int y, int width, int height)
-	{
-		JButton template = new JButton(name);
-		template.setBackground(new Color(88,162,174));
-		template.setForeground(Color.white);
-		template.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 13));
-		template.setBounds(x, y, width, height);
-		template.addActionListener(this);
-		template.setEnabled(false);
-		add(template);
-		return template;
-	}
-	private JButton setStylesAEAdd(String name, Color bg, int x, int y, int width, int height)
+	private JButton setButtonsStats(String name, Color bg, Color fg, Font font,  int x, int y, int width, int height, boolean enabled)
 	{
 		JButton template = new JButton(name);
 		template.setBackground(bg);
-		template.setForeground(new Color(80, 70, 50));
-		template.setFont(new Font("Arial", Font.PLAIN, 16));
+		template.setForeground(fg);
+		template.setFont(font);
 		template.setBounds(x, y, width, height);
 		template.addActionListener(this);
+		template.setEnabled(enabled);
 		add(template);
 		return template;
 	}
